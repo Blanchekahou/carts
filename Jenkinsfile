@@ -1,10 +1,9 @@
+Jenkinsfile (Declarative Pipeline)
 pipeline {
     agent any
-
     tools{
-      maven 'Maven 3.5.4'
+      maven 'Maven 3.6.0'
     }
-
     stages {
         stage('Build') {
             steps {
@@ -15,13 +14,13 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh 'mvn test'
+                sh  'mvn test'
             }
         }
         stage('Package') {
             steps {
                 echo 'Deploying....'
-                sh 'mvn -DskipTests package'
+                sh 'mvn -DskipTests  package'
                 archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
             }
         }
